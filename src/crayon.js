@@ -20,6 +20,7 @@ undoBtn.addEventListener('click', () => {
     if (lines.length > 0) {
         lines.pop();
     }
+    console.log("Lines:", lines.length);
 });
 
 window.setup = (event) => {
@@ -27,17 +28,18 @@ window.setup = (event) => {
 };
 
 window.mousePressed = (event) => {
-    _line = new Line({
-        stroke: color(random(255), random(255), random(255)),
-        strokeWeight: random(1, 10),
-    });
-    lines.push(_line);
-    console.log("Line added. Total lines:", lines.length);
+    if (event.target.tagName === 'CANVAS') { // Verifica si el evento ocurrió en el canvas
+        _line = new Line({
+            stroke: color(random(255), random(255), random(255)),
+            strokeWeight: random(1, 10),
+        });
+        lines.push(_line);
+        console.log("Line added. Total lines:", lines.length);
+    }
 };
 
-
 window.mouseDragged = (event) => {
-    if (mouseIsPressed) {
+    if (event.target.tagName === 'CANVAS' && mouseIsPressed) { // Verifica si el evento ocurrió en el canvas
         const p = createVector(event.x, event.y);
         _line.points.push(p);
     }
