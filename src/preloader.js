@@ -1,3 +1,4 @@
+import { gsap } from 'gsap';
 export default class Preloader {
     constructor() {
         this.preloader = document.getElementById('preloader');
@@ -9,11 +10,11 @@ export default class Preloader {
             duration: 1,
             ease: 'power2.Out',
         });
-
     }
 
     hide() {
         gsap.to(this.preloader, {
+            delay: 1,
             opacity: 0,
             duration: 1,
             y: "-100%",

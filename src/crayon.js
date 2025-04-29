@@ -15,6 +15,14 @@ eraseBtn.addEventListener('click', () => {
     background(0);
 });
 
+let brushSize = 1; // Variable para almacenar el grosor del trazo
+
+const brushSizeInput = document.getElementById('brush-size');
+brushSizeInput.addEventListener('input', (event) => {
+    brushSize = parseFloat(event.target.value); // Actualiza el grosor del trazo
+    console.log("Brush size updated:", brushSize);
+});
+
 undoBtn.addEventListener('click', () => {
     console.log("Undo clicked");
     if (lines.length > 0) {
@@ -31,7 +39,7 @@ window.mousePressed = (event) => {
     if (event.target.tagName === 'CANVAS') { // Verifica si el evento ocurrió en el canvas
         _line = new Line({
             stroke: color(random(255), random(255), random(255)),
-            strokeWeight: random(1, 10),
+            strokeWeight: brushSize
         });
         lines.push(_line);
         console.log("Line added. Total lines:", lines.length);
