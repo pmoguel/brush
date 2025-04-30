@@ -1,4 +1,5 @@
 import { gsap } from 'gsap';
+
 export default class Preloader {
     constructor() {
         this.preloader = document.getElementById('preloader');
